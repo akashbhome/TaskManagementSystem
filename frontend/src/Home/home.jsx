@@ -15,7 +15,7 @@ function Home() {
 
         <div className="container pt-5">
            <Routes>
-                <Route path='/login' element={<Login/>}/>
+                <Route path='*/login' element={<Login/>}/>
            </Routes>
         </div>
 
