@@ -1,8 +1,28 @@
 import React from 'react'
+import AdminNav from './AdminNav'
+import AdminSide from './AdminSide'
+import AdminDashboard from './adminDashboard'
+import { Route, Routes } from 'react-router-dom'
+import UserManage from './UserManage'
+import TaskManage from './TaskManage'
 
 function Admin() {
   return (
-    <div>admin</div>
+    <div className='container-fluid w-100 border p-0'>
+        <div className="row p-0 m-0"  style={{height:"99vh"}}>
+                <div className="col-2 bg-light p-0">
+                   <AdminSide/>
+                </div>
+                <div className="col-10 border p-0">
+                        <AdminNav/>
+                        <Routes>
+                             <Route index element={<AdminDashboard/>}/>
+                             <Route path="/usermanage" element={<UserManage/>}/>
+                             <Route path="/taskmanage" element={<TaskManage/>}/>
+                        </Routes>
+                </div>  
+        </div>
+    </div>
   )
 }
 

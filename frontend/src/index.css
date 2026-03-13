@@ -9,3 +9,11 @@
    background-size: 100% 100%;
    background-repeat: no-repeat;
 }
+.link{
+  color:black;
+}
+
+.link:hover{
+   background-color:antiquewhite;
+   color: rgb(255, 63, 63)  ;
+}

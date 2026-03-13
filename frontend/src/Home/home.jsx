@@ -1,6 +1,6 @@
 import React from 'react'
 import Login from './Login'
-import {Route, Routes, Link} from 'react-router-dom'
+import {Route, Routes, Link, Outlet} from 'react-router-dom'
 
 function Home() {
   return (
@@ -14,9 +14,7 @@ function Home() {
         </nav>
 
         <div className="container pt-5">
-           <Routes>
-                <Route path='*/login' element={<Login/>}/>
-           </Routes>
+           <Outlet/>
         </div>
 
     </div>
