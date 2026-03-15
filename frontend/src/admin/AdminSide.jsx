@@ -4,7 +4,7 @@ function AdminSide() {
   return (
     <div className='w-100 h-100 p-3'>
 
-                <img src="../../public/image/task.jpg" alt="image not found"  className='w-75 mx-4 mb-4 border rounded rounded-circle'/><br />
+                <img src="/image/task.jpg" alt="image not found"  className='w-75 mx-4 mb-4 border rounded rounded-circle'/><br />
 
       <ul className="nav flex-column border bg-white rounded">
 
