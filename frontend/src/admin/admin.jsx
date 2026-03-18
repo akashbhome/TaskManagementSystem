@@ -8,12 +8,12 @@ import TaskManage from './TaskManage'
 
 function Admin() {
   return (
-    <div className='container-fluid w-100 border p-0'>
+    <div className='container-fluid w-100 p-0'>
         <div className="row p-0 m-0"  style={{height:"99vh"}}>
                 <div className="col-2 bg-light p-0">
                    <AdminSide/>
                 </div>
-                <div className="col-10 border p-0">
+                <div className="col-10 p-0">
                         <AdminNav/>
                         <Routes>
                              <Route index element={<AdminDashboard/>}/>

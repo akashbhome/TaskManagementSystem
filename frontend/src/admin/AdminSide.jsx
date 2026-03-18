@@ -21,7 +21,7 @@ function AdminSide() {
         </li>
         <li className="nav-item mb-2 border border-light link">
           <Link className="nav-link link" to="/admin/usermanage">
-            Employee Group
+            Create Employee
           </Link>
         </li>
         <li className="nav-item mb-2 border border-light link">
@@ -29,10 +29,14 @@ function AdminSide() {
             Tasks
           </Link>
         </li>
-         <li className="nav-item mb-2 border border-light link">
-          <Link className="nav-link link" to="/admin/taskmanage">
-            Assign Tasks 
-          </Link>
+         <li className="nav-item mb-2 border  border-light link">
+          
+           <select name="" id="" className='form-control link'>
+                    <option>Assign Task </option>
+                    <option value=""><Link className="nav-link link" to="/admin/taskmanage">Single Task</Link></option>
+                    <option value=""><Link className="nav-link link" to="/admin/taskmanage">Team Task </Link></option>
+           </select>
+         
         </li>
         <li className="nav-item mt-2 border border-light link">
           <Link className="nav-link text-danger" to="/">

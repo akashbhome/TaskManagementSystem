@@ -1,8 +1,9 @@
 let express=require("express")
 let router=express.Router();
 let login = require("../controller/login.js")
-let user=require("../controller/userCont.js");
 let auth=require("../middleware/auth.js")
+let user=require("../controller/userCont.js")
+let task=require("../controller/taskCont.js")
 
 router.post("/login",login.login);
 
@@ -16,7 +17,11 @@ router.delete("/deleteUser",auth,user.deleteUser);
 
 
 //--------------Task---------------------------
-
+router.post("/addTask",task.addTask);
+router.get("/viewTask",task.viewTask);
+router.get("/searchTask",task.searchTask);
+router.put("/updateTask",task.updateTask);
+router.delete("/deleteTask",task.deleteTask);
 
 
 //---------------------------------------------
