@@ -1,12 +1,24 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link,useNavigate } from 'react-router-dom'
 function AdminSide() {
+
+    const navigate = useNavigate()
+    const handleAssignChange = (e) => {
+
+    const value = e.target.value
+
+    if (value === "single") {
+      navigate("/admin/usermanage")
+    } else if (value === "team") {
+      navigate("/admin/taskmanage")
+    }
+  }
   return (
-    <div className='w-100 h-100 p-3'>
+    <div className='w-100 bg-dark h-100 p-3'>
 
                 <img src="/image/task.jpg" alt="image not found"  className='w-75 mx-4 mb-4 border rounded rounded-circle'/><br />
 
-      <ul className="nav flex-column border bg-white rounded">
+      <ul className="nav flex-column">
 
         <li className="nav-item mb-2 border border-light link">
           <Link className="nav-link link" to="/admin">
@@ -29,15 +41,15 @@ function AdminSide() {
             Tasks
           </Link>
         </li>
-         <li className="nav-item mb-2 border  border-light link">
-          
-           <select name="" id="" className='form-control link'>
-                    <option>Assign Task </option>
-                    <option value=""><Link className="nav-link link" to="/admin/taskmanage">Single Task</Link></option>
-                    <option value=""><Link className="nav-link link" to="/admin/taskmanage">Team Task </Link></option>
-           </select>
-         
+
+        <li className="nav-item mb-2 border border-light link">
+          <select className='form-control link bg-black' onChange={handleAssignChange}>
+                <option value="" disabled>Assign Task</option>
+                <option value="single">Single Task</option>
+                <option value="team">Team Task</option>
+          </select>
         </li>
+
         <li className="nav-item mt-2 border border-light link">
           <Link className="nav-link text-danger" to="/">
             Logout

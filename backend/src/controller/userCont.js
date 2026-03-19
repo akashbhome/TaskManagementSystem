@@ -7,33 +7,45 @@ exports.addUser=(req,res)=>{
     usermodel.addUser(name,email,phone,password,role).then((r)=>{
 
                 if(r.affectedRows>=1){
-                        res.send("User Added Successfully")
+                        res.status(200).json({
+                                message: "User Added Successfully"
+                                });
                 }
                 else{
-                        res.send("User Not Added")
+                     res.json({
+                        message: "User Not Added Or Duplicate User"
+                        });
                 }
 
-                }).catch((err)=>{
-                        res.send(err)
-    } ) 
+                }).catch((err) => {
+                                if (err.code === "ER_DUP_ENTRY") {
+                                res.status(400).json({
+                                message: "Email already exists"
+                                });
+                                } else {
+                                res.status(500).json({
+                                message: "Server Error"
+                                });
+                                }
+                        });
 
 }
 
 // -------------View User------------------------------------------------
-exports.viewUser=(req,res)=>{
-
-        usermodel.viewUser().then((r)=>{
-                if(r.length===0){
-                        res.send("user not found")
-                }
-                else{
-                        res.send(r);
-                }
-        }).catch((err)=>{
-                res.send(err)
-        })
-
-}
+exports.viewUser = (req, res) => {
+                usermodel.viewUser()
+                .then((r) => {
+                res.json({
+                        data: r  
+                });
+                })
+                .catch((err) => {
+                res.status(500).json({
+                        message: "Server Error",
+                        error: err.message
+                });
+                });
+};
 
 // -------------Search User---------------------------------------------
 exports.searchUser=(req,res)=>{

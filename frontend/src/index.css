@@ -10,10 +10,15 @@
    background-repeat: no-repeat;
 }
 .link{
-  color:black;
+  background-color: black;
+  color: White;
 }
 
 .link:hover{
    background-color:antiquewhite;
    color: rgb(255, 63, 63)  ;
+}
+
+.dash_box {
+  background-image:linear-gradient(45deg,rgb(244, 213, 213),rgb(204, 204, 239),rgb(211, 242, 211));
 }

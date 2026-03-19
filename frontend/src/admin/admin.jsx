@@ -2,11 +2,17 @@ import React from 'react'
 import AdminNav from './AdminNav'
 import AdminSide from './AdminSide'
 import AdminDashboard from './adminDashboard'
-import { Route, Routes } from 'react-router-dom'
+import { Route, Routes,useLocation } from 'react-router-dom'
 import UserManage from './UserManage'
 import TaskManage from './TaskManage'
 
 function Admin() {
+
+  const location = useLocation();
+
+  const id = location.state?.id || localStorage.getItem("userId");
+
+  console.log(id);
   return (
     <div className='container-fluid w-100 p-0'>
         <div className="row p-0 m-0"  style={{height:"99vh"}}>

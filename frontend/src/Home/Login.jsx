@@ -1,23 +1,41 @@
 import React, {useState} from 'react'
 import { useNavigate } from 'react-router-dom';
+import { loginUser } from '../service/login';
 import './Login.css'
 
 function Login() {
 const navigate=useNavigate()
   let [login,setLogin]=useState({
-    username:"",
+    email:"",
     password:""
   });
 
-let userLogin=()=>{
-  if(login.username==='admin@gmail.com' && login.password==='admin'){
+let userLogin=async()=>{
+   let result=await loginUser(login.email,login.password);
+   localStorage.setItem("userId", result.id);
+  // if(result.role==='admin'){
+  //   // if(login.password==='admin' && login.email==="admin@123"){
+  //      navigate('/admin', { state: { id: result.id } })
+  //     // navigate('/admin')
+  // }
+  // else if(result==='user'){
+  //   alert(user);
 
-          navigate('/admin')
-  }
-  else{
-    console.log(login.username,login.password)
-      alert("User not Found")
-  }
+  // }
+  // else{
+  //   console.log(login.username,login.password)
+  //     alert("User not Found")
+  // }
+
+  if (result?.role === 'admin') {
+  navigate('/admin', { state: { id: result.id } })
+      } 
+      else if (result?.role === 'user') {
+        alert("User Login")
+      } 
+      else {
+        alert("User not Found")
+      }
 }
   return (
     
@@ -33,7 +51,7 @@ let userLogin=()=>{
                 <div className="mb-3">
                     <label className="form-label text-light">Username</label>
                     <input type="text" className="form-control" placeholder="Enter your Username"
-                          value={login.username} onChange={(e)=>{setLogin({...login, username:e.target.value})}} />
+                          value={login.email} onChange={(e)=>{setLogin({...login, email:e.target.value})}} />
                 </div>
 
                 <div className="mb-3">

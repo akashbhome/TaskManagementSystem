@@ -14,12 +14,16 @@ exports.login=(req,res)=>{
                     { expiresIn: "24h" }
                 );
 
-                res.json({
+             res.json({
                     message: "Login successful",
-                    token: token
+                    token: token,
+                    id: user.id,        // ✅ send id
+                    role: user.role     // ✅ send role
                 });
         } else {
-            res.send("Invalid Email or Password")
+            res.status(401).json({
+                    message: "Invalid Email or Password"
+                });
         }
     }) .catch((err) => {
             res.send(err);
