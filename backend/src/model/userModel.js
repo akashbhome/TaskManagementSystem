@@ -51,10 +51,10 @@ exports.searchUser=(search)=>{
 
 
 //-------------Update User------------------------------------------------
-exports.updateUser=(id,name,email,phone,role)=>{
+exports.updateUser=(id,name,email,phone,password,role)=>{
 
     return new Promise((resolve,reject)=>{
-            db.query("update user set name=?,email=?,phone=? where id=? and role=?",[name,email,phone,id,role],(err,result)=>{
+            db.query("update user set name=?,email=?,phone=?,password=? where id=? and role=?",[name,email,phone,password,id,role],(err,result)=>{
                         if(err){
                             reject(err)
                         }

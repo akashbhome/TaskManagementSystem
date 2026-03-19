@@ -1,5 +1,6 @@
 import React,{useState,useEffect}from 'react'
-import { saveUser,viewUser } from '../service/admin'
+import { saveUser,viewUser,deleteUser} from '../service/admin'
+import { useNavigate } from 'react-router-dom'
 function UserManage() {
 //--------------------Add User Function-------------------
   let [addUser,setUser]=useState({
@@ -59,6 +60,31 @@ let loadUsers = async () => {
 };
   
 // --------------------------------------------------------------------------
+
+//--------------------------------Delete User-----------------------------
+
+let deleteU = async (id) => {
+      try {
+        let result = await deleteUser(id);
+        alert(result.message);
+        loadUsers(); 
+      } catch (err) {
+        alert("Delete failed");
+      }
+};
+
+//-------------------------------------------------------------------------
+
+
+// ------------------------------Edit User----------------------------------
+
+let navigate=useNavigate()
+
+let updatePageCall=(item)=>{
+
+  navigate("/admin/updateuser", { state: { item: item } });
+}
+//--------------------------------------------------
   return (
 
     <div className='container-fluid border w-100  p-0 m-0' style={{height:"90vh"}}>
@@ -125,10 +151,10 @@ let loadUsers = async () => {
                                     <td>{item.email}</td>
                                     <td>{item.phone}</td>
                                     <td>
-                                      <button className="btn btn-success">Update</button>
+                                      <button className="btn btn-success" onClick={()=>updatePageCall(item)}>Update</button>
                                     </td>
                                     <td>
-                                      <button className="btn btn-danger">Delete</button>
+                                      <button className="btn btn-danger" onClick={()=>deleteU(item.id)}>Delete</button>
                                     </td>
                                   </tr>
                                 ))

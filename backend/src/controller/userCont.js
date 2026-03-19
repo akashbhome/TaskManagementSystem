@@ -66,37 +66,48 @@ exports.searchUser=(req,res)=>{
 //-------------Update User------------------------------------------------
 exports.updateUser=(req,res)=>{
 
-    let {id,name,email,phone,role}=req.body;
-    usermodel.updateUser(id,name,email,phone,role).then((r)=>{
+    let {id,name,email,phone,password,role}=req.body;
+    usermodel.updateUser(id,name,email,phone,password,role).then((r)=>{
 
                 if(r.affectedRows>=1){
-                        res.send("User Update Successfully")
+                       res.status(200).json({
+                                message: "User update Successfully"
+                                });
                 }
                 else{
-                        res.send("User Not Update")
+                      res.json({
+                        message: "User Not Updated"
+                        });
                 }
 
                 }).catch((err)=>{
-                        res.send(err)
+                         if (err.code === "ER_DUP_ENTRY") {
+                                res.status(400).json({
+                                message: "Email already exists"
+                                });
+                                } else {
+                                res.status(500).json({
+                                message: "Server Error"
+                                });
+                                }
     } ) 
 }
 
 // --------------Delete User--------------------------------------------
-exports.deleteUser=(req,res)=>{
+exports.deleteUser = (req, res) => {
+        let { id } = req.query;
 
-        let {id}=req.query;
-        usermodel.deleteUser(id).then((r)=>{
-
-                if(r.affectedRows>=1){
-                        res.send("User Delete Successfully")
-                    }
-                else{
-                        res.send("User Not Delete")
-                    }
-        }).catch((err)=>{
-                        res.send(err)
-                })
-
-}
+        usermodel.deleteUser(id)
+        .then((r) => {
+        if (r.affectedRows >= 1) {
+                res.json({ message: "User Deleted Successfully" });
+        } else {
+                res.json({ message: "User Not Deleted" });
+        }
+        })
+        .catch((err) => {
+        res.status(500).json({ message: err.message });
+        });
+};
 
 // ------------------------------------------ End User ---------------------------------------------------
