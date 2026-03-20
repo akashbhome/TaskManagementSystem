@@ -6,6 +6,8 @@ import { Route, Routes,useLocation } from 'react-router-dom'
 import UserManage from './UserManage'
 import TaskManage from './TaskManage'
 import UpdateUser from './updateUser'
+
+import UpdateTask from './updateTask'
 function Admin() {
 
   const location = useLocation();
@@ -26,6 +28,7 @@ function Admin() {
                              <Route path="/usermanage" element={<UserManage/>}/>
                              <Route path="/taskmanage" element={<TaskManage/>}/>
                              <Route path='/updateuser' element={<UpdateUser/>}/>
+                             <Route path='/updatetask' element={<UpdateTask/>}/>
                         </Routes>
                 </div>  
         </div>

@@ -5,8 +5,6 @@ function auth(req,res,next){
 
     let header = req.headers["authorization"];
 
-    console.log("HEADER:", header);
-
     if(!header){
         return res.send("Token Not Found");
     }
