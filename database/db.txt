@@ -21,3 +21,15 @@ mysql> desc task;
 +-----------+--------------+------+-----+---------+----------------+
 2 rows in set (0.03 sec)
 
+mysql> desc user
+    -> ;
++----------+----------------------+------+-----+---------+----------------+
+| Field    | Type                 | Null | Key | Default | Extra          |
++----------+----------------------+------+-----+---------+----------------+
+| id       | int                  | NO   | PRI | NULL    | auto_increment |
+| name     | varchar(100)         | YES  |     | NULL    |                |
+| email    | varchar(50)          | YES  | UNI | NULL    |                |
+| phone    | varchar(10)          | YES  |     | NULL    |                |
+| password | varchar(50)          | YES  |     | NULL    |                |
+| role     | enum('admin','user') | YES  |     | NULL    |                |
++----------+----------------------+------+-----+---------+----------------+
